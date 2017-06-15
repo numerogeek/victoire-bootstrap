@@ -1,0 +1,73 @@
+front:
+    build: docker/front
+    volumes_from:
+        - data
+    volumes:
+        - ./docker/front/config/app.conf:/etc/nginx/conf.d/app.conf
+    links:
+        - app
+    ports:
+        - 80:80
+
+app:
+    build: docker/app
+    links:
+        - db
+        - redis
+    volumes_from:
+        - data
+    env_file:
+        - docker/settings/env
+        - docker/settings/env_access
+    environment:
+        - PHP_IDE_CONFIG=serverName=victoire
+
+data:
+    image: busybox
+    volumes:
+        - .:/var/www/html
+
+db:
+    image: mysql:5.7
+    env_file:
+        - docker/settings/mysql
+    volumes:
+        - ./data/mysql:/var/lib/mysql
+        - ./docker/mysql/my.cnf:/etc/mysql/mysql.conf.d/my.cnf
+    ports:
+        - 3306:3306
+
+adminer:
+    image: clue/adminer
+    links:
+        - db
+    ports:
+        - 8080:80
+
+tools:
+    build: docker/tools
+    links:
+        - db
+        - redis
+    volumes:
+        - $SSH_AUTH_SOCK:/tmp/agent.sock
+        - ~/.gitconfig:/var/www/.gitconfig
+        - ~/.ssh/known_hosts:/var/www/.ssh/known_hosts
+        - ~/.composer:/var/www/.composer
+        - ./data/.bash_history:/var/www/.bash_history
+    environment:
+        - SSH_AUTH_SOCK=/tmp/agent.sock
+        - PHP_IDE_CONFIG=serverName=victoire
+    volumes_from:
+        - data
+    env_file:
+        - docker/settings/env
+        - docker/settings/env_access
+        - docker/settings/mysql
+
+
+redis:
+    image: redis:alpine
+    command: redis-server
+    container_name: redis
+    ports: ["6379"]

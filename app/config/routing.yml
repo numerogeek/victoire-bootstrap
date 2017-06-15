@@ -1,0 +1,17 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+_bazinga_jstranslation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+#Needs to be the last
+VictoireCoreBundle:
+    resource: .
+    type: victoire_i18n

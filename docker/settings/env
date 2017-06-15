@@ -1,0 +1,4 @@
+# common
+SYMFONY_ENV=dev
+SYMFONY_DEBUG=1
+XDEBUG=1
