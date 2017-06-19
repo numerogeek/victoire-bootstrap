@@ -23,6 +23,10 @@ elif [ ! "$LOCAL_IP" = "none" ]; then
 fi
 
 
+    su -s /bin/bash -c "chown -R www-data /var/www/.config"
+    su -s /bin/bash -c "chown -R www-data /var/www/.cache"
+    su -s /bin/bash -c "chown -R www-data /var/www/.local"
+
 # Execute all commands with user www-data except for superuser access 'su'
 if [ "$1" = "composer" ]; then
     su www-data -s /bin/bash -c "`which php` -d memory_limit=-1 `which composer` ${*:2}"

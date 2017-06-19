@@ -27,6 +27,7 @@ RUN curl -sS https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add 
 RUN echo 'deb https://deb.nodesource.com/node_6.x jessie main' > /etc/apt/sources.list.d/nodesource.list
 RUN apt-get update && apt-get install -y nodejs
 RUN npm install less -g
+RUN npm install bower -g
 #RUN npm uninstall npm -g
 
 # Assign a shell to user www-data
@@ -34,6 +35,9 @@ RUN chsh -s /bin/bash www-data
 
 # Access rights
 RUN mkdir -p /var/www/html && chown -R www-data:www-data /var/www/html
+RUN mkdir -p /var/www/.config && chown -R www-data:www-data /var/www/.config
+RUN mkdir -p /var/www/.cache && chown -R www-data:www-data /var/www/.cache
+RUN mkdir -p /var/www/.local && chown -R www-data:www-data /var/www/.local
 
 # Copy configuration files
 ADD config/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini

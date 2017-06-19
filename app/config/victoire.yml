@@ -1,15 +1,15 @@
 imports:
-    - { resource: @VictoireCoreBundle/Resources/config/config.yml }
-    - { resource: @VictoireTwigBundle/Resources/config/config.yml }
+    - { resource: "@VictoireCoreBundle/Resources/config/config.yml" }
+    - { resource: "@VictoireTwigBundle/Resources/config/config.yml" }
 
 assetic:
     use_controller: false
+    node: /usr/bin/node
+    node_paths: [/usr/lib/node_modules]
     bundles: ~
     filters:
         cssrewrite: ~
-        less:
-           node: /usr/bin/node
-           node_paths: [/usr/lib/node_modules]
+        less: ~ #Victoire needs less under v3.0.0
 
 fos_user:
     db_driver: orm
@@ -35,16 +35,8 @@ stof_doctrine_extensions:
             sluggable: true
             timestampable: true
 
-snc_redis:
-   clients:
-       victoire:
-           type: predis
-           alias: victoire
-           dsn: redis://redis
-
-
 victoire_core:
-    user_class: "Victoire\\Bundle\\UserBundle\\Entity\\User"
+    user_class: Victoire\Bundle\UserBundle\Entity\User
     business_entity_debug: true
     layouts:
         defaultLayout: "Default layout"

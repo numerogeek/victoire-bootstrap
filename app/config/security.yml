@@ -1,5 +1,5 @@
 # To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
+# http://symfony.com/doc/current/security.html
 security:
     encoders:
         Victoire\Bundle\UserBundle\Entity\User: bcrypt
@@ -14,7 +14,7 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                csrf_provider: form.csrf_provider
+                csrf_token_generator: security.csrf.token_manager
                 failure_path: /login
                 check_path: /login_check
                 default_target_path: /

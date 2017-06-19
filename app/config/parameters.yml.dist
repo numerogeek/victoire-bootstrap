@@ -1,6 +1,6 @@
 # This file is a "template" of what your parameters.yml file should look like
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
-# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
     database_host: db
     database_port: null
@@ -16,10 +16,13 @@ parameters:
     mailer_password: ~
 
     # A secret key that's used to generate certain security-related tokens
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: 0b1f529bfd1e2214cc16881ae978db041c8bee6f
     fos_js_base_url: https://victoire.io
-    victoire_redis_path: redis://127.0.0.1:6379
+    victoire_redis_path: redis://redis
     #if locale_pattern is domain
     locale_pattern_table:
         io.victoire.dev: fr
         victoire.io: fr
+    node_path: /usr/bin/node
+    node_paths:
+        - /usr/lib/node_modules

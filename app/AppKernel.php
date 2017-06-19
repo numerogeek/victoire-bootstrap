@@ -7,7 +7,7 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
-        $bundles = array(
+        $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -16,9 +16,10 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
-            new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
-            //dependencies
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+            new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Troopers\AsseticInjectorBundle\TroopersAsseticInjectorBundle(),
             new Troopers\AlertifyBundle\TroopersAlertifyBundle(),
             new FOS\UserBundle\FOSUserBundle(),
@@ -29,7 +30,6 @@ class AppKernel extends Kernel
             new Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             //Victoire bundles
             new Victoire\Bundle\AnalyticsBundle\VictoireAnalyticsBundle(),
             new Victoire\Bundle\BlogBundle\VictoireBlogBundle(),
@@ -47,19 +47,14 @@ class AppKernel extends Kernel
             new Victoire\Bundle\SitemapBundle\VictoireSitemapBundle(),
             new Victoire\Bundle\TemplateBundle\VictoireTemplateBundle(),
             new Victoire\Bundle\TwigBundle\VictoireTwigBundle(),
+            new Victoire\Bundle\UIBundle\VictoireUIBundle(),
             new Victoire\Bundle\UserBundle\VictoireUserBundle(),
             new Victoire\Bundle\ViewReferenceBundle\ViewReferenceBundle(),
             new Victoire\Bundle\WidgetBundle\VictoireWidgetBundle(),
             new Victoire\Bundle\WidgetMapBundle\VictoireWidgetMapBundle(),
-            new \Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
-            new \Victoire\Widget\BreadcrumbBundle\VictoireWidgetBreadcrumbBundle(),
-            new \Victoire\Widget\ButtonBundle\VictoireWidgetButtonBundle(),
-            new \Victoire\Widget\ImageBundle\VictoireWidgetImageBundle(),
-            new \Victoire\Widget\RenderBundle\VictoireWidgetRenderBundle(),
-            new \Victoire\Widget\TextBundle\VictoireWidgetTextBundle()
-        );
+        ];
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
+        if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
@@ -67,6 +62,21 @@ class AppKernel extends Kernel
         }
 
         return $bundles;
+    }
+
+    public function getRootDir()
+    {
+        return __DIR__;
+    }
+
+    public function getCacheDir()
+    {
+        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+    }
+
+    public function getLogDir()
+    {
+        return dirname(__DIR__).'/var/logs';
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

@@ -1,0 +1,3 @@
+1529461133
+%255BVictoire%255CBundle%255CBlogBundle%255CEntity%255CArticle%2524tags%2540%255BAnnot%255D%255D%255B1%255D
+a:3:{i:0;O:31:"Doctrine\ORM\Mapping\ManyToMany":7:{s:12:"targetEntity";s:3:"Tag";s:8:"mappedBy";N;s:10:"inversedBy";s:8:"articles";s:7:"cascade";N;s:5:"fetch";s:4:"LAZY";s:13:"orphanRemoval";b:0;s:7:"indexBy";N;}i:1;O:30:"Doctrine\ORM\Mapping\JoinTable":4:{s:4:"name";s:16:"vic_article_tags";s:6:"schema";N;s:11:"joinColumns";a:0:{}s:18:"inverseJoinColumns";a:0:{}}i:2;O:45:"Symfony\Component\Validator\Constraints\Valid":3:{s:8:"traverse";b:1;s:7:"payload";N;s:6:"groups";a:1:{i:0;s:7:"Default";}}}

@@ -2,7 +2,7 @@ UNAME := $(shell uname -s)
 COMPOSE=docker-compose
 RUN=$(COMPOSE) run --rm tools
 COMPOSER=composer
-SYMFONY=app/console
+SYMFONY=bin/console
 
 all: configure start install
 
